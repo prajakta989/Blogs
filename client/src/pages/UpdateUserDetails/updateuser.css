@@ -1,0 +1,29 @@
+.updatewrapper{
+    display: flex;
+    align-items: center;
+}
+.updateHead{
+    color: red;
+    font-weight: 100;
+    font-size: 30px;
+}
+.updateprofile{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label{
+    margin-left: 15px;
+    background: rgb(30, 137, 198);
+    padding: 8px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 5px;
+}

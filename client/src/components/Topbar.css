@@ -1,0 +1,12 @@
+.img{
+    width: 50px;
+    border-radius: 60%;
+}
+.topbar{
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+.logo{
+    font-size: 30px;
+}
