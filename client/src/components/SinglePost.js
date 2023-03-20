@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./SinglePost.css";
-import Image from "../assets/img2.jpg";
 import Button from "react-bootstrap/esm/Button";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -25,31 +24,56 @@ const SinglePost = () => {
     } catch (err) {}
   };
 
+  const handleUpdate =async()=> {
+    try{
+      await axios.put(`/posts/${post._id}`, {
+        username: user.username,
+        title,
+        desc
+      });
+      setUpdatemode(false)
+    }
+    catch(err){
+      
+    }
+  }
+
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get("/posts/" + path);
       setPost(res.data);
+      setTitle(res.data.title);
+      setDesc(res.data.desc);
       console.log(res.data);
     };
     getPost();
   }, [path]);
 
   console.log(user);
+  console.log(post.username);
   return (
     <div className="post">
       {post.photo ? (
         <img src={PF + post.photo} alt="post" className="image" />
       ) : (
-        <img src={Image} alt="post" className="image" />
+        ""
       )}
       {updatemode ? (
-        <input type="text" value={post.title} />
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
       ) : (
-        <h1 className="title py-2">{post.title}</h1>
+        <h1 className="title py-2">{title}</h1>
       )}
-      {updatemode ? <textarea /> : <p className="desc py-2">{post.desc}</p>}
+      {updatemode ? (
+        <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
+      ) : (
+        <p className="desc py-2">{desc}</p>
+      )}
 
-      {post.username === user?.username && (
+      {post.username === user?.username && updatemode === false && (
         <div className="btns">
           <Button
             variant="outline-secondary"
@@ -62,6 +86,17 @@ const SinglePost = () => {
             variant="outline-secondary"
             className="me-2"
             onClick={() => setUpdatemode(true)}
+          >
+            Update
+          </Button>
+        </div>
+      )}
+      {updatemode && (
+        <div>
+          <Button
+            variant="outline-secondary"
+            className="me-2"
+            onClick={handleUpdate}
           >
             Update
           </Button>

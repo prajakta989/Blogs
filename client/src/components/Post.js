@@ -1,14 +1,15 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Image from "../assets/img1.jpg";
 import { Link } from "react-router-dom";
 
 const Post = ({ posts }) => {
+  const PF = "http://localhost:5000/images/";
+  console.log("posts:" + posts);
+  console.log(posts.photo);
   return (
     <div>
       <Card style={{ width: "18rem" }} className=" my-4">
-        <Card.Img variant="top" src={Image} />
+        <Card.Img variant="top" src={posts.photo?PF + posts.photo: PF+"no-image.png"} />
         <Card.Body>
           <Link to={`/post/${posts._id}`}>
             <Card.Title>{posts.title}</Card.Title>
@@ -18,12 +19,6 @@ const Post = ({ posts }) => {
           <span style={{ display: "block", marginBottom: "5px" }}>
             {new Date(posts.createdAt).toDateString()}
           </span>
-          <Button variant="secondary" className="me-2">
-            Update
-          </Button>
-          <Button variant="danger" className="me-2">
-            Delete
-          </Button>
         </Card.Body>
       </Card>
     </div>
