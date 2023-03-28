@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../Models/User");
 const Post = require("../Models/Post");
 
-//Get Post
+// Post request(post a post)
 router.post("/", async (req, res) => {
   // const {title, desc} = req.body;
   const newPost = new Post(req.body);
@@ -88,6 +88,12 @@ router.get("/:id", async(req,res) => {
         res.status(500).json(err)
     }
   })
+
+  //search post
+
+  // router.get("/" ,(req,res)=> {
+  //   const data = req.body
+  // })
 
 
 module.exports = router;

@@ -27,3 +27,17 @@
     font-size: 30px;
     font-weight: 600;
 }
+
+.updateinput{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    border: none;
+    
+
+}
+
+.updateinput:focus{
+    outline: none;
+    border-bottom: 1px solid #111;
+}

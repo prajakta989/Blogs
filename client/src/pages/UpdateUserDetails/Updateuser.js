@@ -38,7 +38,9 @@ const Updateuser = () => {
     }
     try {
       const res= await axios.put("/user/" + user._id, updatedUser);
+      console.log("res:-", res.data);
       dispatch({type:"UPDATE_SUCCESS", payload:res.data});
+      
       setMsg(true)
     } catch (err) {
       dispatch({type:"UPDATE_FAILURE"})
